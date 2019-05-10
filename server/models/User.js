@@ -2,8 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
-  password: String
+  username:{
+    type: String,
+    unique: true,
+    required: true,
+    maxlength: 30,
+    minlength: 10
+  },
+  password: {
+    type: String,
+    required: true,
+    maxlength: 30,
+    minlength: 10
+  },
+  name: String,
 }, {
     timestamps: {
       createdAt: 'created_at',
