@@ -1,18 +1,18 @@
 const express = require('express');
-const Country = require('../models/Country')
+const barberShop = require('../models/barberShop')
 
 const router = express.Router();
 
-// Route to get all countries
+// Route to get all BarberShops
 router.get('/', (req, res, next) => {
-  Country.find()
-    .then(countries => {
-      res.json(countries);
+  barberShop.find()
+    .then(barbershops => {
+      res.json(barbershops);
     })
     .catch(err => next(err))
 });
 
-// Route to add a country
+// Route to add a BarberShop
 router.post('/', (req, res, next) => {
   let { name, capitals, area, description } = req.body
   Country.create({ name, capitals, area, description })

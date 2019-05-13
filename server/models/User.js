@@ -2,12 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username:{
+  email:{
     type: String,
     unique: true,
     required: true,
-    maxlength: 30,
-    minlength: 10
   },
   password: {
     type: String,
@@ -15,7 +13,19 @@ const userSchema = new Schema({
     maxlength: 30,
     minlength: 10
   },
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  picture: String,
+  role: {
+    type: String,
+    enum: ["CLIENT", "BARBER", "HAIRDRESSER"]
+  } ,
+  _barberShop: {
+    type: Schema.Types.ObjectId,
+    ref: "BarberShop"
+  }
 }, {
     timestamps: {
       createdAt: 'created_at',
