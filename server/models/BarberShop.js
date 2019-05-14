@@ -22,11 +22,6 @@ const barberShopSchema = new Schema(
       type: String,
       required: true
     },
-    email: {
-      type: String,
-      unique: true,
-      required: true
-    },
     address: {
       street_address: String,
       city: String,
