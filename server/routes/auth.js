@@ -2,6 +2,8 @@ const express = require("express")
 const passport = require('passport')
 const router = express.Router()
 const User = require("../models/User")
+const Cloudinary = require("../configs/cloudinary");
+const { isLoggedIn } = require("../middlewares");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt")
@@ -98,5 +100,24 @@ router.get("/logout", (req, res) => {
   req.logout()
   res.json({ message: 'You are out!' })
 })
+
+// Route for user to upload
+router.put("/update-picture", isLoggedIn, Cloudinary.single("picture"), (req, res, next) => {
+
+  User.findByIdAndUpdate( 
+    req.user._id,
+    {
+      picture: req.file.url
+    },
+    { new: true }
+  )
+    .then(user => {
+      res.json({
+        success: true,
+        user
+      });
+    })
+    .catch(err => next(err));
+});
 
 module.exports = router

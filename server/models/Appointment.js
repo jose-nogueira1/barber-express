@@ -8,7 +8,7 @@ const appointmentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  _barbershop: {
+  _barberShop: {
     type: Schema.Types.ObjectId,
     ref: "BarberShop"
   },
