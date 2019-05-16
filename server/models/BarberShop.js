@@ -1,19 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let workingHourSchema =  {
-  begin: {
-    type: String,
-    match: /[0-9]{2}:[0-9]{2}/
-  },
-  end: {
-    type: String,
-    match: /[0-9]{2}:[0-9]{2}/
-  },
-}
 
-const barberShopSchema = new Schema(
-  {
+const barberShopSchema = new Schema({
+    
     _owner: {
       type: Schema.Types.ObjectId,
       ref: "User"
@@ -23,27 +13,38 @@ const barberShopSchema = new Schema(
       required: true
     },
     address: {
-      street_address: String,
+      streetAddress: String,
       city: String,
       country: String,
       location: {
         type: { type: String, default: "Point" },
         coordinates: [Number]
-      }
-    },
-    workingHours: {
-      mon: workingHourSchema,
-      tue: workingHourSchema,
-      wed: workingHourSchema,
-      thu: workingHourSchema,
-      fri: workingHourSchema,
-      sat: workingHourSchema,
-      sun: workingHourSchema,
+      },
     },
     gender: {
-      enum: ["MALE", "FEMALE", "UNISEX"]
+      type: String,
+      enum: ["MALE", "FEMALE", "UNISEX"],
+      required: true
     },
-    logo: String
+    workingHours: {
+      workingHourMonBegin: { type: Number },
+      workingHourMonEnd: { type: Number },
+      workingHourTueBegin: { type: Number },
+      workingHourTueEnd: { type: Number },
+      workingHourWedBegin: { type: Number },
+      workingHourWedEnd: { type: Number },
+      workingHourThuBegin: { type: Number },
+      workingHourThuEnd: { type: Number },
+      workingHourFriBegin: { type: Number },
+      workingHourFriEnd: { type: Number },
+      workingHourSatBegin: { type: Number },
+      workingHourSatEnd: { type: Number },
+      workingHourSunBegin: { type: Number },
+      workingHourSunEnd: { type: Number },
+    },
+    logo:{
+      type: String,
+    }
   },
   {
     timestamps: {

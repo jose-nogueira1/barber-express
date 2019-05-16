@@ -16,6 +16,10 @@ const userSchema = new Schema({
     required: true,
   },
   picture: String,
+  type: {
+    type: String,
+    enum: ["BARBER", "CLIENT"]
+  },
   _barberShop: {
     type: Schema.Types.ObjectId,
     ref: "BarberShop"

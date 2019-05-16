@@ -1,38 +1,75 @@
-const express = require('express');
-const barberShop = require('../models/barberShop')
-const { isLoggedIn } = require("../middlewares")
+const express = require("express");
+const BarberShop = require("../models/barberShop");
+const { isLoggedIn } = require("../middlewares");
+const Cloudinary = require("../configs/cloudinary");
 
 const router = express.Router();
 
 // Route to create a BarberShop
-router.post('/barbershops', (req, res, next) => {
-  let { name, gender, address, workingHours, logo } = req.body
-  barberShop.create({ name, gender, address, workingHours, logo })
-    .then(barbershops => {
+router.post("/barbershops", Cloudinary.single("picture"), isLoggedIn, (req, res, next) => {
+  let {
+    name,
+    gender,
+    streetAddress,
+    city,
+    country,
+    lat,
+    lng,
+    workingHourMonBegin,
+    workingHourMonEnd,
+    workingHourTueBegin,
+    workingHourTueEnd,
+    workingHourWedBegin,
+    workingHourWedEnd,
+    workingHourThuBegin,
+    workingHourThuEnd,
+    workingHourFriBegin,
+    workingHourFriEnd,
+    workingHourSatBegin,
+    workingHourSatEnd,
+    workingHourSunBegin,
+    workingHourSunEnd
+  } = req.body;
+  let _owner = req.user._id;
+  let logo = req.file.url;
+  BarberShop.create({
+    _owner,
+    name,
+    gender,
+    address: {
+      streetAddress,
+      city,
+      country,
+      location: {
+        coordinates: [ lat, lng ]
+      },
+    },
+    workingHours:{
+      workingHourMonBegin,
+      workingHourMonEnd,
+      workingHourTueBegin,
+      workingHourTueEnd,
+      workingHourWedBegin,
+      workingHourWedEnd,
+      workingHourThuBegin,
+      workingHourThuEnd,
+      workingHourFriBegin,
+      workingHourFriEnd,
+      workingHourSatBegin,
+      workingHourSatEnd,
+      workingHourSunBegin,
+      workingHourSunEnd
+    },
+    logo
+  })
+    .then(barbershop => {
       res.json({
         success: true,
-        barbershops
+        barbershop
       });
     })
-    .catch(err => next(err))
+    .catch(err => next(err));
 });
 
-// Route to delete a Barbershop
-// router.delete("/visits/:visitId", isLoggedIn, (req,res,next) => {
-//   barberShop.findById(req.params.barberShopId)
-//     .then(barbershop => {
-//       if(barbershop._user.equals(req.user._id)){
-//         barberShop.findByIdAndRemove(req.params.visitId)
-//         .then(barbershop => {
-//           res.json({
-//             success: true,
-//             barbershop,
-//             message: "The barbershop was successfully deleted"
-//           })
-//         })
-//         .catch(err => next(err))
-//       } else {}
-//     })
-// })
 
 module.exports = router;
