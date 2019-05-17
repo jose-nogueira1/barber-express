@@ -1,7 +1,7 @@
 const express = require("express");
 const Appointment = require("../models/Appointment");
 const { isLoggedIn } = require("../middlewares");
-const BarberShop = require("../models/BarberShop")
+const BarberShop = require("../models/BarberShop");
 
 const router = express.Router();
 
@@ -51,12 +51,11 @@ router.delete("/appointments/:appointmentId", isLoggedIn, (req, res, next) => {
   Appointment.findById(req.params.appointmentId)
     .then(appointment => {
       if (req.user._id.equals(appointment._customer)) {
-        Appointment.findByIdAndDelete(appointment._id) 
-          .then( appointment => {
-            res.json({
-              success: true
-            });
-          })
+        Appointment.findByIdAndDelete(appointment._id).then(appointment => {
+          res.json({
+            success: true
+          });
+        });
       } else {
         next({
           status: 403,
@@ -70,24 +69,57 @@ router.delete("/appointments/:appointmentId", isLoggedIn, (req, res, next) => {
 // Route to get all available appointment, on a specific date and a specific barber shop
 // Example input: GET /api/available-times (_barberShop="12345679abcdef", date="2019-05-16")
 // Example output: [
-//  {numbersAndMinute: 540, status: "Available"},
-//  {numbersAndMinute: 585, status: "Unavailable"},
-//  {numbersAndMinute: 630, status: "Unavailable"},
+//  {hourAndMinutes: 540, status: "Available"},
+//  {hourAndMinutes: 585, status: "Unavailable"},
+//  {hourAndMinutes: 630, status: "Unavailable"},
 // ]
 router.get("/available-times/:barbershopId", (req, res, next) => {
-  let { _barberShop, date } = req.body;
+  let { date } = req.body; // date = req.body.date
   let _id = req.params.barbershopId;
-  BarberShop.findById({_id})
+  BarberShop.findById({ _id })
     .then(barbershop => {
-      Appointment.find({_barberShop:_id})
-      .then(appointments => {
-        res.json({
-          success: true,
-          workingHours
-        })
-      })
+      Appointment.find({ _barberShop: _id }).then(appointments => {
+        console.log("barbershop", barbershop);
+        console.log("appointments", appointments);
+        let day = new Date(date).getDay(); // 0 => Sunday, 1 => Monday...
+        let workingHourBegin, workingHourEnd;
+        switch (day) {
+          case 0:
+            workingHourBegin = barbershop.workingHours.workingHourSunBegin;
+            workingHourEnd = barbershop.workingHours.workingHourSunEnd;
+            break;
+          case 5:
+            workingHourBegin = barbershop.workingHours.workingHourFriBegin;
+            workingHourEnd = barbershop.workingHours.workingHourFriEnd;
+            break;
+          case 6:
+            workingHourBegin = barbershop.workingHours.workingHourSatBegin;
+            workingHourEnd = barbershop.workingHours.workingHourSatEnd;
+            break;
+          default:
+            throw new Error("There is a problem with the day " + day);
+        }
+        let output = [];
+        for (
+          let hourAndMinutes = workingHourBegin * 60;
+          hourAndMinutes < workingHourEnd * 60;
+          hourAndMinutes += 50
+        ) {
+          output.push({
+            hourAndMinutes: hourAndMinutes,
+            status:
+              appointments.filter(
+                appointment => appointment.hourAndMinutes === hourAndMinutes
+              ).length === 0
+                ? "Available"
+                : "Unavailable"
+          });
+        }
+        console.log();
+        res.json(output);
+      });
     })
-    .catch(err => next(err))
+    .catch(err => next(err));
 });
-  
+
 module.exports = router;
