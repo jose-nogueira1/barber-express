@@ -67,12 +67,6 @@ router.delete("/appointments/:appointmentId", isLoggedIn, (req, res, next) => {
 });
 
 // Route to get all available appointment, on a specific date and a specific barber shop
-// Example input: GET /api/available-times (_barberShop="12345679abcdef", date="2019-05-16")
-// Example output: [
-//  {hourAndMinutes: 540, status: "Available"},
-//  {hourAndMinutes: 585, status: "Unavailable"},
-//  {hourAndMinutes: 630, status: "Unavailable"},
-// ]
 router.get("/available-times/:barbershopId", (req, res, next) => {
   let { date } = req.body; // date = req.body.date
   let _id = req.params.barbershopId;
@@ -87,6 +81,22 @@ router.get("/available-times/:barbershopId", (req, res, next) => {
           case 0:
             workingHourBegin = barbershop.workingHours.workingHourSunBegin;
             workingHourEnd = barbershop.workingHours.workingHourSunEnd;
+            break;
+          case 1:
+            workingHourBegin = barbershop.workingHours.workingHourMonBegin;
+            workingHourEnd = barbershop.workingHours.workingHourMonEnd;
+            break;
+          case 2:
+            workingHourBegin = barbershop.workingHours.workingHourTusBegin;
+            workingHourEnd = barbershop.workingHours.workingHourTusEnd;
+            break;
+          case 3:
+            workingHourBegin = barbershop.workingHours.workingHourWedBegin;
+            workingHourEnd = barbershop.workingHours.workingHourWedEnd;
+            break;
+          case 4:
+            workingHourBegin = barbershop.workingHours.workingHourThuBegin;
+            workingHourEnd = barbershop.workingHours.workingHourThuEnd;
             break;
           case 5:
             workingHourBegin = barbershop.workingHours.workingHourFriBegin;
