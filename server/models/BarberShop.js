@@ -21,11 +21,6 @@ const barberShopSchema = new Schema({
         coordinates: [Number]
       },
     },
-    gender: {
-      type: String,
-      enum: ["MALE", "FEMALE", "UNISEX"],
-      required: true
-    },
     workingHours: {
       workingHourMonBegin: { type: Number },
       workingHourMonEnd: { type: Number },

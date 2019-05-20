@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import api from '../../api';
 
 export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "",
+      email: "",
       name: "",
       password: "",
       message: null
@@ -22,7 +23,7 @@ export default class Signup extends Component {
   handleClick(e) {
     e.preventDefault()
     let data = {
-      username: this.state.username,
+      email: this.state.email,
       name: this.state.name,
       password: this.state.password,
     }
@@ -39,10 +40,11 @@ export default class Signup extends Component {
       <div className="Signup">
         <h2>Signup</h2>
         <form>
-          Username: <input type="text" value={this.state.username} name="username" onChange={this.handleInputChange} /> <br />
+          Email: <input type="text" value={this.state.email} name="email" onChange={this.handleInputChange} /> <br />
           Name: <input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} /> <br />
           Password: <input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Signup</button>
+          <p>Have an Account ? <Link to="/login">Log In</Link></p>
         </form>
         {this.state.message && <div className="info info-danger">
           {this.state.message}

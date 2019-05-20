@@ -6,8 +6,7 @@ const Cloudinary = require("../configs/cloudinary");
 const router = express.Router();
 
 // Route to create a BarberShop
-router.post(
-  "/barbershop",
+router.post("/barbershop",
   Cloudinary.single("picture"),
   isLoggedIn,
   (req, res, next) => {

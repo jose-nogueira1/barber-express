@@ -1,4 +1,4 @@
-// --------------------
+@import '../node_modules/mapbox-gl/src/css/mapbox-gl.css';
 // Definition of variables
 $primary: #32c3ff;
 
@@ -98,4 +98,8 @@ body {
     font-size: 1.2em;
     color: $primary;
   }
+}
+
+.map {
+  text-align: left;
 }
