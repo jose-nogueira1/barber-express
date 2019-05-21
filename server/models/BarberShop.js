@@ -13,9 +13,7 @@ const barberShopSchema = new Schema({
       required: true
     },
     address: {
-      streetAddress: String,
-      city: String,
-      country: String,
+      placename: String,
       location: {
         type: { type: String, default: "Point" },
         coordinates: [Number]

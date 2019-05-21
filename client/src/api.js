@@ -83,4 +83,32 @@ export default {
       .catch(errHandler)
   },
 
+  getAppointments() {
+    return service
+      .get("/appointment")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  addAppointment(uploadData) {
+    return service
+    .post("/appointment", uploadData)
+    .then(res => res.data)
+    .catch(errHandler)
+  },
+
+  getAppointment(appointmentId) {
+    return service
+      .get(`/appointment/${appointmentId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getAvailableTimes(barberShopId) {
+    return service
+      .get(`/available-times/${barberShopId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  }
+
 }

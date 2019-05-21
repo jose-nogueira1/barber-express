@@ -13,11 +13,7 @@ router.post("/barbershop",
     let {
       name,
       gender,
-      streetAddress,
-      city,
-      country,
-      lat,
-      lng,
+      address,
       workingHourMonBegin,
       workingHourMonEnd,
       workingHourTueBegin,
@@ -39,14 +35,7 @@ router.post("/barbershop",
       _owner,
       name,
       gender,
-      address: {
-        streetAddress,
-        city,
-        country,
-        location: {
-          coordinates: [lat, lng]
-        }
-      },
+      address,
       workingHours: {
         workingHourMonBegin,
         workingHourMonEnd,

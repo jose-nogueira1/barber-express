@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import MainNavBar from "../../MainNavbar"
-import MainFooter from "../../Mainfooter"
+import MainNavBar from "../../MainNavbar";
+import MainFooter from "../../Mainfooter";
+import Autocomplete from "../../AutocompletePlace"
 import api from '../../api';
 import { Col, 
          Row, 
@@ -16,10 +17,12 @@ export default class AddBarberShop extends Component {
     super(props)
     this.state = {
       name: "",
-      streetAddress: "",
-      city: "",
-      country: "",
-      location: [],
+      address: {
+        placename: "",
+        location: {
+          coordinates: [],
+        }
+      },
       workingHours: {
         workingHourMonBegin: null,
         workingHourMonEnd: null,
@@ -60,10 +63,7 @@ export default class AddBarberShop extends Component {
     e.preventDefault()
     let data = {
       name: this.state.name,
-      streetAddress: this.state.streetAddress,
-      city: this.state.city,
-      country: this.state.country,
-      location: this.state.location,
+      address: this.state.address,
       workingHourMonBegin: this.state.workingHourMonBegin,
       workingHourMonEnd: this.state.workingHourMonEnd,
       workingHourTueBegin: this.state.workingHourTueBegin,
@@ -84,10 +84,12 @@ export default class AddBarberShop extends Component {
         console.log('SUCCESS!')
         this.setState({
           name: "",
-          streetAddress: "",
-          city: "",
-          country: "",
-          location: "",
+          address: {
+            placename: "",
+            location: {
+              coordinates: []
+            }
+          },
           workingHourMonBegin: "",
           workingHourMonEnd: "",
           workingHourTueBegin: "",
@@ -113,6 +115,16 @@ export default class AddBarberShop extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
+  handlePlace(place) {
+    this.setState({
+      address: {
+        placename: place.place_name,
+        location: {
+          coordinates: place.center
+        }
+      }
+    })
+  }
   render() {
     return (
       <div className="AddBarberShop">
@@ -127,22 +139,10 @@ export default class AddBarberShop extends Component {
           </Col>
         </Row>
         <FormGroup>
-          <Label for="exampleStreetAddress">Street: </Label>
-          <Input type="text" value={this.state.streetAddress} name="streetAddress" onChange={this.handleInputChange} />
+          <Label for="exampleAddress">Address: </Label>
+          <Autocomplete onSelect={place => this.handlePlace(place)} />
         </FormGroup>
         <Row form>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="exampleCity">City: </Label>
-              <Input type="text" value={this.state.city} name="city" onChange={this.handleInputChange} />
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="exampleCountry">Country: </Label>
-              <Input type="text" value={this.state.country} name="country" onChange={this.handleInputChange} />
-            </FormGroup>
-          </Col>
           <Col md={2}>
             <FormGroup>
               <Label for="exampleWorkingHourMonBegin">Monday Begin: </Label>
