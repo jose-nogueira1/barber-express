@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import MainNavbar from "../../MainNavbar"
+import MainFooter from '../../Mainfooter';
 import api from "../../api";
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-import MainFooter from '../../Mainfooter';
 
-mapboxgl.accessToken = "pk.eyJ1IjoiaWFtYWxpdHRsZWtpZCIsImEiOiJjanVsMWR0dDkxdnF0M3lxamM5cGltajhpIn0.HKbAc83dAXOzVDvmO9Qy3Q"
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY
 
 export default class Home extends Component {
   constructor(props) {
@@ -61,8 +61,6 @@ export default class Home extends Component {
       this.setState({
         barberShops: barberShops
       })
-      console.log(" barberShops", barberShops)
-      console.log(" barberShops", barberShops.address)
       let [lng, lat] = barberShops[0].address.location.coordinates
       this.initMap(barberShops)
     })

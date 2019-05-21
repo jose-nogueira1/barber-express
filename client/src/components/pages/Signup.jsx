@@ -38,7 +38,7 @@ export default class Signup extends Component {
   render() {
     return (
       <div className="Signup">
-        <h2>Signup</h2>
+        <img src="/img/BarberExpress.png" alt="" height="150px"/>
         <form>
           Email: <input type="text" value={this.state.email} name="email" onChange={this.handleInputChange} /> <br />
           Name: <input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} /> <br />

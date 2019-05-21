@@ -19,12 +19,12 @@ export default class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route path="/barbershop/:barberShopId" component={BarberShopProfile} />
           <Route path="/barbershop" component={AddBarberShop} />
           <Route path="/appointment" component={AddAppointment} />
-          <Route path="" component={BarberShopProfile} />
-          <Route path="" component={ManageAppointment} />
-          <Route path="" component={SearchMap} />
-          <Route path="" component={UpdateProfile} />
+          <Route path="/appointment/:appointmentId" component={ManageAppointment} />
+          <Route path="/searchmap" component={SearchMap} />
+          <Route path="/profile/:userId" component={UpdateProfile} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

@@ -32,7 +32,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <h2>Login</h2>
+        <img src="/img/BarberExpress.png" alt="" height="150px"/>
         <form>
           Email: <input type="text" value={this.state.email} name="email" onChange={this.handleInputChange} /> <br />
           Password: <input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />

@@ -85,8 +85,8 @@ router.get("/barbershop", (req, res, next) => {
 });
 
 // Route to get a Barber Shop by it's Id
-router.get("/barbershop/:barbershopId", (req, res, next) => {
-  BarberShop.findById(req.params.barbershopId)
+router.get("/barbershop/:barberShopId", (req, res, next) => {
+  BarberShop.findById(req.params.barberShopId)
     .then(barbershop => {
       if (barbershop) {
         res.json(barbershop);
@@ -94,7 +94,7 @@ router.get("/barbershop/:barbershopId", (req, res, next) => {
         next({
           status: 400,
           message:
-            "There is no Barber Shop with the id: " + req.params.barbershopId
+            "There is no Barber Shop with the id: " + req.params.barberShopId
         });
       }
     })
