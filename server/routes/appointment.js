@@ -39,7 +39,7 @@ router.get("/appointment/:appointmentId", (req, res, next) => {
         next({
           status: 400,
           message:
-            "There is no Barber Shop with the id: " + req.params.appointmentId
+            "There is no Appointment with the id: " + req.params.appointmentId
         });
       }
     })

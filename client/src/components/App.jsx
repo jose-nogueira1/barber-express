@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AddBarberShop from './pages/AddBarberShop';
+import AddAppointment from "./pages/AddAppointment";
+import BarberShopProfile from "./pages/BarberShopProfile";
+import ManageAppointment from "./pages/ManageAppointment";
+import SearchMap from "./pages/SearchMap";
+import UpdateProfile from "./pages/UpdateProfile";
 
 export default class App extends Component {
 
@@ -15,6 +20,11 @@ export default class App extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/barbershop" component={AddBarberShop} />
+          <Route path="/appointment" component={AddAppointment} />
+          <Route path="" component={BarberShopProfile} />
+          <Route path="" component={ManageAppointment} />
+          <Route path="" component={SearchMap} />
+          <Route path="" component={UpdateProfile} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

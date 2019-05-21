@@ -68,4 +68,12 @@ export default {
       .catch(errHandler)
   },
 
+  addBarberShop(uploadData) {
+    return service
+      .post("/barbershop", uploadData)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  
 }
