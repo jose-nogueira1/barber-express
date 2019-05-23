@@ -68,7 +68,9 @@ router.delete("/appointments/:appointmentId", isLoggedIn, (req, res, next) => {
 
 // Route to get all available appointment, on a specific date and a specific barber shop
 router.get("/available-times/:barbershopId", (req, res, next) => {
-  let { date } = req.body; // date = req.body.date
+  let { date } = req.query; // date = req.body.date
+  if (!date) next({ status: 400, message: "You must send a date" })
+  
   let _id = req.params.barbershopId;
   BarberShop.findById({ _id })
     .then(barbershop => {
@@ -125,7 +127,6 @@ router.get("/available-times/:barbershopId", (req, res, next) => {
                 : "Unavailable"
           });
         }
-        console.log();
         res.json(output);
       });
     })

@@ -7,13 +7,15 @@ const router = express.Router();
 
 // Route to create a BarberShop
 router.post("/barbershop",
-  Cloudinary.single("picture"),
+  Cloudinary.single("logo"),
   isLoggedIn,
   (req, res, next) => {
     let {
       name,
       gender,
-      address,
+      address_placename,
+      address_lat,
+      address_lng,
       workingHourMonBegin,
       workingHourMonEnd,
       workingHourTueBegin,
@@ -35,7 +37,12 @@ router.post("/barbershop",
       _owner,
       name,
       gender,
-      address,
+      address: {
+        placename: address_placename,
+        location: {
+          coordinates: [address_lng, address_lat]
+        }
+      },
       workingHours: {
         workingHourMonBegin,
         workingHourMonEnd,

@@ -8,8 +8,15 @@ export default class BarberShopProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      barbershop: null
+      barbershop: null,
+      date: new Date(),
+      availableTimes: [],
     }
+  }
+  convertToReadbleHour(hourAndMinutes) {
+    let h = Math.floor(hourAndMinutes/60)
+    let m = "00"
+    return h + ":" + m
   }
   render() {
     return (
@@ -32,6 +39,19 @@ export default class BarberShopProfile extends Component {
               </ul>
               <button>Book Appointment</button>
             </div>
+
+            <div>
+              <h2>Book an appointment</h2>
+              {this.state.date.toLocaleDateString()}
+
+              <ul>
+                {this.state.availableTimes.map(time => <li key={time.hourAndMinutes}>
+                  {this.convertToReadbleHour(time.hourAndMinutes)}-
+                    {time.status}-
+                    {time.status === "Available" && <button>Book</button>}
+                </li>)}
+              </ul>
+            </div>
           </div>}
         <MainFooter />
       </div>
@@ -39,11 +59,16 @@ export default class BarberShopProfile extends Component {
   }
   
   componentDidMount() {
-    api.getBarberShop(this.props.match.params.barberShopId)
-    .then(barbershop => {
+    Promise.all([
+      api.getBarberShop(this.props.match.params.barberShopId),
+      api.getAvailableTimes(this.props.match.params.barberShopId, this.state.date)
+    ])
+    .then(([barbershop, availableTimes]) => {
+      console.log("TCL: BarberShopProfile -> componentDidMount -> availableTimes", availableTimes)
+      
       this.setState({
-        barbershop: barbershop
-        
+        barbershop: barbershop,
+        availableTimes: availableTimes
       })
       console.log("TCL: BarberShopProfile", this.state.barbershop.address.streetAddress)
     })

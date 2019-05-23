@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom"
+import {  Link } from "react-router-dom"
 
 export default class MainFooter extends React.Component {
   render() {

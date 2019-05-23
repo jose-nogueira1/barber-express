@@ -104,9 +104,10 @@ export default {
       .catch(errHandler)
   },
 
-  getAvailableTimes(barberShopId) {
+  getAvailableTimes(barberShopId, date) {
+    console.log("TCL: getAvailableTimes -> date", date)
     return service
-      .get(`/available-times/${barberShopId}`)
+      .get(`/available-times/${barberShopId}`, { params: {date}})
       .then(res => res.data)
       .catch(errHandler)
   }

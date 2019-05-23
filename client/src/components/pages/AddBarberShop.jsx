@@ -60,26 +60,28 @@ export default class AddBarberShop extends Component {
   }
 
   handleClick(e) {
-    e.preventDefault()
-    let data = {
-      name: this.state.name,
-      address: this.state.address,
-      workingHourMonBegin: this.state.workingHourMonBegin,
-      workingHourMonEnd: this.state.workingHourMonEnd,
-      workingHourTueBegin: this.state.workingHourTueBegin,
-      workingHourTueEnd: this.state.workingHourTueEnd,
-      workingHourWedBegin: this.state.workingHourWedBegin,
-      workingHourWedEnd: this.state.workingHourWedEnd,
-      workingHourThuBegin: this.state.workingHourThuBegin,
-      workingHourThuEnd: this.state.workingHourThuEnd,
-      workingHourFriBegin: this.state.workingHourFriBegin,
-      workingHourFriEnd: this.state.workingHourFriEnd,
-      workingHourSatBegin: this.state.workingHourSatBegin,
-      workingHourSatEnd: this.state.workingHourSatEnd,
-      workingHourSunBegin: this.state.workingHourSunBegin,
-      workingHourSunEnd: this.state.workingHourSunEnd,
-    }
-    api.addBarberShop(data)
+    let uploadData = new FormData()
+      uploadData.append("name", this.state.name)
+      uploadData.append("address_placename", this.state.address.placename)
+      uploadData.append("address_lng", this.state.address.location.coordinates[0])
+      uploadData.append("address_lat", this.state.address.location.coordinates[1])
+      uploadData.append("workingHourMonBegin" ,this.state.workingHourMonBegin )
+      uploadData.append("workingHourMonEnd" ,this.state.workingHourMonEnd )
+      uploadData.append("workingHourTueBegin" ,this.state.workingHourTueBegin )
+      uploadData.append("workingHourTueEnd" ,this.state.workingHourTueEnd )
+      uploadData.append("workingHourWedBegin" ,this.state.workingHourWedBegin )
+      uploadData.append("workingHourWedEnd" ,this.state.workingHourWedEnd )
+      uploadData.append("workingHourThuBegin" ,this.state.workingHourThuBegin )
+      uploadData.append("workingHourThuEnd" ,this.state.workingHourThuEnd )
+      uploadData.append("workingHourFriBegin" ,this.state.workingHourFriBegin )
+      uploadData.append("workingHourFriEnd" ,this.state.workingHourFriEnd )
+      uploadData.append("workingHourSatBegin" ,this.state.workingHourSatBegin )
+      uploadData.append("workingHourSatEnd" ,this.state.workingHourSatEnd )
+      uploadData.append("workingHourSunBegin" ,this.state.workingHourSunBegin )
+      uploadData.append("workingHourSunEnd" ,this.state.workingHourSunEnd )
+      uploadData.append("logo", this.state.logo)
+  
+    api.addBarberShop(uploadData)
       .then(result => {
         console.log('SUCCESS!')
         this.setState({
@@ -104,7 +106,7 @@ export default class AddBarberShop extends Component {
           workingHourSatEnd: "",
           workingHourSunBegin: "",
           workingHourSunEnd: "",
-          logo: null,
+          logo: "",
           message: `Your Barbershop '${this.state.name}' has been created`
         })
         setTimeout(() => {
@@ -115,6 +117,7 @@ export default class AddBarberShop extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
+
   handlePlace(place) {
     this.setState({
       address: {
@@ -230,7 +233,7 @@ export default class AddBarberShop extends Component {
           <Col sm={10}>
             <FormGroup>
               <Label for="exampleLogo">Logo: </Label>
-              <Input type="file" value={this.state.logo} name="logo" onChange={this.handleFileChange} />
+              <Input type="file" name="logo" onChange={this.handleFileChange} />
             </FormGroup>
           </Col>
         </Row>

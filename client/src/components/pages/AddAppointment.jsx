@@ -7,8 +7,10 @@ import api from '../../api';
 export default class AddAppointment extends Component {
   constructor(props) {
     super(props)
+    var today = new Date(),
+        date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     this.state = {
-      date: new Date(),
+      date: date,
       hourAndMinutes: null,
     }
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -48,9 +50,10 @@ export default class AddAppointment extends Component {
     return (
       <div className="AddAppointment">
         <MainNavBar canGoBack>Book Appointment</MainNavBar>
-        
+          <h1>{this.state.date}</h1>
         <MainFooter />
       </div>
     );
   }
+
 }
