@@ -8,15 +8,51 @@ export default class ManageAppointment extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      appointments: []
     }
   }
+
+  deleteAppointment(appointmentId) {
+    api.deleteAppointment(appointmentId)
+      .then(appointment => {
+        this.setState({
+          appointment: appointment
+        })
+      })
+      .catch(err => console.log(err))
+      this.componentDidMount()
+  }
+
+  convertToReadbleHour(hourAndMinutes) {
+    let h = Math.floor(hourAndMinutes / 60);
+    let m = hourAndMinutes % 60;
+    if (m < 10) m = "0"+m
+    return h + ":" + m;
+  }
+
   render() {
     return (
       <div className="ManageAppointment">
-        <MainNavBar canGoBack>Manage Appointments</MainNavBar>
+        <MainNavBar canGoBack>My Appointments</MainNavBar>
+        {this.state.appointments.map(appointment =>
+          <div className="appointment" key={appointment._id}>
+            <strong>Barber Shop:</strong> {appointment._barberShop.name} <br/>
+            <strong>Date:</strong> {new Date(appointment.date).toLocaleString("fr-FR").substr(0,10)} <br/>
+            <strong>Time:</strong> {this.convertToReadbleHour(appointment.hourAndMinutes)} <br/>
+            <button onClick={()=> this.deleteAppointment(appointment._id)}>Delete</button>
+          </div>)}
         <MainFooter />
       </div>
     );
+  }
+
+  componentDidMount() {
+    api.getAppointments()
+    .then(appointments => {
+      this.setState({
+        appointments: appointments,
+      })
+    })
+    .catch(err => console.log(err))
   }
 }

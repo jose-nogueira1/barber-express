@@ -104,6 +104,13 @@ export default {
       .catch(errHandler)
   },
 
+  deleteAppointment(appointmentId) {
+    return service
+      .delete(`/appointment/${appointmentId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getAvailableTimes(barberShopId, date) {
     console.log("TCL: getAvailableTimes -> date", date)
     return service

@@ -6,9 +6,10 @@ import api from "./api";
 
 export default class MainFooter extends React.Component {
 
-  componentDidMount() {
-    api.isLoggedIn()
-  }
+  // componentDidMount() {
+  //   api.isLoggedIn()
+  //    .then(user => {}) 
+  //   }
   
   render() {
     return (

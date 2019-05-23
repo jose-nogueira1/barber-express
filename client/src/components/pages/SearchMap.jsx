@@ -50,9 +50,6 @@ export default class SearchMap extends Component {
             <p>Name: </p>
             <p>Address: </p>
             <p>Distance: </p>
-            <button tag={NLink} to={`/barbershop/${barberShops._id}`}>
-              See More
-            </button>
           </div>
         </div>
       );

@@ -22,7 +22,8 @@ router.post("/appointment", isLoggedIn, (req, res, next) => {
 
 // Route to get all appointments
 router.get("/appointment", (req, res, next) => {
-  Appointment.find()
+  Appointment.find({_customer: req.user._id})
+    .populate("_barberShop")
     .then(appointment => {
       res.json(appointment);
     })
@@ -47,7 +48,7 @@ router.get("/appointment/:appointmentId", (req, res, next) => {
 });
 
 // Route to delete an appointment
-router.delete("/appointments/:appointmentId", isLoggedIn, (req, res, next) => {
+router.delete("/appointment/:appointmentId", isLoggedIn, (req, res, next) => {
   Appointment.findById(req.params.appointmentId)
     .then(appointment => {
       if (req.user._id.equals(appointment._customer)) {
