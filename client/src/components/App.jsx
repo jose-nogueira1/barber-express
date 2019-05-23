@@ -6,7 +6,6 @@ import Signup from './pages/Signup';
 import AddBarberShop from './pages/AddBarberShop';
 import BarberShopProfile from "./pages/BarberShopProfile";
 import ManageAppointment from "./pages/ManageAppointment";
-import SearchMap from "./pages/SearchMap";
 
 export default class App extends Component {
 
@@ -20,7 +19,6 @@ export default class App extends Component {
           <Route path="/barbershop/:barberShopId" component={BarberShopProfile} />
           <Route path="/barbershop" component={AddBarberShop} />
           <Route path="/appointments" component={ManageAppointment} />
-          <Route path="/searchmap" component={SearchMap} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

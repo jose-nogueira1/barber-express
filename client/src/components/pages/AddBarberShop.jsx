@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MainNavBar from "../../MainNavbar";
 import MainFooter from "../../Mainfooter";
-import Autocomplete from "../../AutocompletePlace"
+import { Link } from "react-router-dom";
+import Autocomplete from "../../AutocompletePlace";
 import api from '../../api';
 import { Col, 
          Row, 
@@ -60,6 +61,7 @@ export default class AddBarberShop extends Component {
   }
 
   handleClick(e) {
+    e.preventDefault()
     let uploadData = new FormData()
       uploadData.append("name", this.state.name)
       uploadData.append("address_placename", this.state.address.placename)
@@ -109,6 +111,7 @@ export default class AddBarberShop extends Component {
           logo: "",
           message: `Your Barbershop '${this.state.name}' has been created`
         })
+        this.props.history.push("/")
         setTimeout(() => {
           this.setState({
             message: null
@@ -237,7 +240,7 @@ export default class AddBarberShop extends Component {
             </FormGroup>
           </Col>
         </Row>
-        <Button onClick={this.handleClick} >Create Barber Shop</Button>
+        <Button onClick={this.handleClick}>Create Barber Shop</Button>
       </Form> <br/>
       <MainFooter />
       </div>

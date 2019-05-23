@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MainNavbar from "../../MainNavbar"
 import MainFooter from '../../Mainfooter';
+import Autocomplete from "../../AutocompletePlace";
 import api from "../../api";
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
@@ -36,9 +37,23 @@ export default class Home extends Component {
     // Add zoom control on the top right corner
     this.map.addControl(new mapboxgl.NavigationControl())
 
+
+
     for (let i = 0; i < barberShops.length; i++) {
+      var popup = new mapboxgl.Popup()
+      .setHTML(
+        <div className="barbershop">
+          <img src="" alt="" />
+          <div className="barbershopinfo">
+            <p>Name: </p>
+            <p>Address: </p>
+            <p>Distance: </p>
+          </div>
+        </div>          
+      )
       this.marker = new mapboxgl.Marker({ color: 'red' })
         .setLngLat(barberShops[i].address.location.coordinates)
+        .setPopup(popup)
         .addTo(this.map)
     }
     // Create a marker on the map with the coordinates ([lng, lat])
@@ -49,6 +64,7 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <MainNavbar>Barber Express</MainNavbar>
+        <Autocomplete onSelect={place => console.log(place)} />
         <div className="map" ref={this.mapRef} style={{ height: 400}}></div>
         <MainFooter />
       </div>

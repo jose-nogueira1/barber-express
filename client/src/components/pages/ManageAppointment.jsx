@@ -15,12 +15,10 @@ export default class ManageAppointment extends Component {
   deleteAppointment(appointmentId) {
     api.deleteAppointment(appointmentId)
       .then(appointment => {
-        this.setState({
-          appointment: appointment
-        })
+        this.componentDidMount() 
       })
       .catch(err => console.log(err))
-      this.componentDidMount()
+      // this.setState()
   }
 
   convertToReadbleHour(hourAndMinutes) {
