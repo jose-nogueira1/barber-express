@@ -1,13 +1,17 @@
 import React from "react";
-import { NavLink as NLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default class MainNavbar extends React.Component {
+
+  goback() {
+
+  }
   render() {
     return (
       <div className="navbar">
         <nav>
           {this.props.canGoBack && 
-          <button tag={NLink} to={"/"}>{"<"}</button>}
+          <button><Link to={"/"}>{"<"}</Link></button>}
           <h1>{this.props.children}</h1>
         </nav>
       </div>
