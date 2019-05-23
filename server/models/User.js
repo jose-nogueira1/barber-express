@@ -15,7 +15,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  picture: String,
   _barberShop: {
     type: Schema.Types.ObjectId,
     ref: "BarberShop"

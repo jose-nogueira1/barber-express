@@ -4,11 +4,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AddBarberShop from './pages/AddBarberShop';
-import AddAppointment from "./pages/AddAppointment";
 import BarberShopProfile from "./pages/BarberShopProfile";
 import ManageAppointment from "./pages/ManageAppointment";
 import SearchMap from "./pages/SearchMap";
-import UpdateProfile from "./pages/UpdateProfile";
 
 export default class App extends Component {
 
@@ -21,10 +19,8 @@ export default class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/barbershop/:barberShopId" component={BarberShopProfile} />
           <Route path="/barbershop" component={AddBarberShop} />
-          <Route path="/appointment" component={AddAppointment} />
-          <Route path="/appointment/:appointmentId" component={ManageAppointment} />
+          <Route path="/appointments" component={ManageAppointment} />
           <Route path="/searchmap" component={SearchMap} />
-          <Route path="/profile/:userId" component={UpdateProfile} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
