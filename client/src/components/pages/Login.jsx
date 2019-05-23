@@ -32,10 +32,10 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <img src="/img/BarberExpress.png" alt="" height="150px"/>
+        <img src="/img/BarberExpress.png" alt="" height="200px"/>
         <form>
-          Email: <input type="text" value={this.state.email} name="email" onChange={this.handleInputChange} /> <br />
-          Password: <input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />
+          <input placeholder="Email..." type="text" value={this.state.email} name="email" onChange={this.handleInputChange} /> <br />
+          <input placeholder="Password..." type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Login</button>
           <p>Don't have an account ? <Link to="/signup">Create One</Link></p>
         </form>

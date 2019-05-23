@@ -139,103 +139,87 @@ export default class AddBarberShop extends Component {
         <Row form>
           <Col md={6}>
             <FormGroup>
-              <Label for="exampleName">Name: </Label>
-              <Input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} />
+              <Input placeholder="Barber shop Name..." type="text" value={this.state.name} name="name" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
         </Row>
         <FormGroup>
-          <Label for="exampleAddress">Address: </Label>
           <Autocomplete onSelect={place => this.handlePlace(place)} />
         </FormGroup>
         <Row form>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourMonBegin">Monday Begin: </Label>
-              <Input type="number" value={this.state.workingHourMonBegin} name="workingHourMonBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Monday Begin..." type="number" value={this.state.workingHourMonBegin} name="workingHourMonBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourMonEnd">Monday End: </Label>
-              <Input type="number" value={this.state.workingHourMonEnd} name="workingHourMonEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Monday End..." type="number" value={this.state.workingHourMonEnd} name="workingHourMonEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourTueBegin">Tuesday Begin: </Label>
-              <Input type="number" value={this.state.workingHourTueBegin} name="workingHourTueBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Tuesday Begin..." type="number" value={this.state.workingHourTueBegin} name="workingHourTueBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourTueEnd">Tuesday End: </Label>
-              <Input type="number" value={this.state.workingHourTueEnd} name="workingHourTueEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Tuesday End..." type="number" value={this.state.workingHourTueEnd} name="workingHourTueEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourWedBegin">Wednesday Begin: </Label>
-              <Input type="number" value={this.state.workingHourWedBegin} name="workingHourWedBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Wednesday Begin..." type="number" value={this.state.workingHourWedBegin} name="workingHourWedBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourWedEnd">Wednesday End: </Label>
-              <Input type="number" value={this.state.workingHourWedEnd} name="workingHourWedEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Wednesday End..." type="number" value={this.state.workingHourWedEnd} name="workingHourWedEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourThuBegin">Thursday Begin: </Label>
-              <Input type="number" value={this.state.workingHourThuBegin} name="workingHourThuBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Thursday Begin..." type="number" value={this.state.workingHourThuBegin} name="workingHourThuBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourThuEnd">Thursday End: </Label>
-              <Input type="number" value={this.state.workingHourThuEnd} name="workingHourThuEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Thursday End..." type="number" value={this.state.workingHourThuEnd} name="workingHourThuEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourFriBegin">Friday Begin: </Label>
-              <Input type="number" value={this.state.workingHourFriBegin} name="workingHourFriBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Friday Begin..." type="number" value={this.state.workingHourFriBegin} name="workingHourFriBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourFriEnd">Friday End: </Label>
-              <Input type="number" value={this.state.workingHourFriEnd} name="workingHourFriEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Friday End..." type="number" value={this.state.workingHourFriEnd} name="workingHourFriEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourSatBegin">Saturday Begin: </Label>
-              <Input type="number" value={this.state.workingHourSatBegin} name="workingHourSatBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Saturday Begin..." type="number" value={this.state.workingHourSatBegin} name="workingHourSatBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourSatEnd">Saturday End: </Label>
-              <Input type="number" value={this.state.workingHourSatEnd} name="workingHourSatEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Saturday End..." type="number" value={this.state.workingHourSatEnd} name="workingHourSatEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourSunBegin">Sunday Begin: </Label>
-              <Input type="number" value={this.state.workingHourSunBegin} name="workingHourSunBegin" onChange={this.handleInputChange} />
+              <Input placeholder="Sunday Begin..." type="number" value={this.state.workingHourSunBegin} name="workingHourSunBegin" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
-              <Label for="exampleWorkingHourSunEnd">Sunday End: </Label>
-              <Input type="number" value={this.state.workingHourSunEnd} name="workingHourSunEnd" onChange={this.handleInputChange} />
+              <Input placeholder="Sunday End..." type="number" value={this.state.workingHourSunEnd} name="workingHourSunEnd" onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
           <Col sm={10}>
             <FormGroup>
-              <Label for="exampleLogo">Logo: </Label>
+              <Label for="exampleLogo">Logo: </Label> <br/>
               <Input type="file" name="logo" onChange={this.handleFileChange} />
             </FormGroup>
           </Col>

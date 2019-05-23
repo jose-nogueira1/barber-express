@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MainNavbar from "../../MainNavbar"
 import MainFooter from '../../Mainfooter';
-import Autocomplete from "../../AutocompletePlace";
 import api from "../../api";
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
@@ -64,7 +63,7 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <MainNavbar>Barber Express</MainNavbar>
-        <Autocomplete onSelect={place => console.log(place)} />
+        <h2>Yo</h2>
         <div className="map" ref={this.mapRef} style={{ height: 400}}></div>
         <MainFooter />
       </div>
