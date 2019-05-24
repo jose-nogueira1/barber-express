@@ -145,7 +145,9 @@ export default class AddBarberShop extends Component {
               <input placeholder="Saturday End..." type="number" value={this.state.workingHourSatEnd} name="workingHourSatEnd" onChange={this.handleInputChange} />  
               <input placeholder="Sunday Begin..." type="number" value={this.state.workingHourSunBegin} name="workingHourSunBegin" onChange={this.handleInputChange} />  
               <input placeholder="Sunday End..." type="number" value={this.state.workingHourSunEnd} name="workingHourSunEnd" onChange={this.handleInputChange} />
-              <input type="file" name="logo" onChange={this.handleFileChange} />
+              <input className="add-logo" id="file" type="file" name="logo" onChange={this.handleFileChange} />
+              <label for="file">Add Logo</label> <br/>
+
               <button onClick={this.handleClick}>Create Barber Shop</button>
           </div>
         </div>
