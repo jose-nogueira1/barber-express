@@ -126,7 +126,7 @@ export default class AddBarberShop extends Component {
   render() {
     return (
       <div className="AddBarberShop">
-        <MainNavBar canGoBack >Add BarberShop</MainNavBar>
+        <MainNavBar canGoBack >Add BarberShop </MainNavBar>
         <div className="addbarbershop-center">
           <div className="addbarbershop">
               <Autocomplete className="search" onSelect={place => this.handlePlace(place)}/>
