@@ -67,7 +67,7 @@ export default class BarberShopProfile extends Component {
                     {this.state.barbershop.workingHours.workingHourSatEnd}:00
                   </li>
                   <li>
-                    <strong>Sunday:</strong>{" "} Not Open
+                    <strong>Sunday: </strong>{" "} Not Open
                   </li>
                 </ul>
               </div>
