@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MainNavBar from "../../MainNavbar";
 import MainFooter from "../../Mainfooter";
+import "./Barbershop.css";
 import api from "../../api";
 
 export default class BarberShopProfile extends Component {
@@ -43,73 +44,53 @@ export default class BarberShopProfile extends Component {
   render() {
     return (
       <div className="BarberShopProfile">
-        <MainNavBar canGoBack>BarberShop</MainNavBar>
-        {this.state.barbershop && (
-          <div>
-            <img src={this.state.barbershop.logo} alt="" height="150px;" />
+        <MainNavBar>BarberShop</MainNavBar>
+        <div className="barbershop-info">
+          {this.state.barbershop && (
             <div>
-              <h1>{this.state.barbershop.name}</h1>
-              <p>
-                <strong>Address:</strong>{" "}
-                {this.state.barbershop.address.placename}
-              </p>
-              <ul>
-                <li>
-                  <strong>Monday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourMonBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourMonEnd}
-                </li>
-                <li>
-                  <strong>Tuesday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourTueBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourTueEnd}
-                </li>
-                <li>
-                  <strong>Wednesday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourWedBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourWedEnd}
-                </li>
-                <li>
-                  <strong>Thursday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourThuBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourThuEnd}
-                </li>
-                <li>
-                  <strong>Friday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourFriBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourFriEnd}
-                </li>
-                <li>
-                  <strong>Saturday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourSatBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourSatEnd}
-                </li>
-                <li>
-                  <strong>Sunday:</strong>{" "}
-                  {this.state.barbershop.workingHours.workingHourSunBegin} -{" "}
-                  {this.state.barbershop.workingHours.workingHourSunEnd}
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h2>Book an appointment</h2>
-              <button onClick={()=>this.incrementDate(-1)}>{"<"}</button>
-              {this.state.date.toLocaleDateString()}
-              <button onClick={()=>this.incrementDate(1)}>{">"}</button>
-
-              <ul>
-                {this.state.availableTimes.map(time => time.status === "Available" && (
-                  <li key={time.hourAndMinutes}>
-                    {this.convertToReadbleHour(time.hourAndMinutes)} -{" "}
-                    {time.status} {" "} 
-                    {time.status === "Available" && <button onClick={()=>this.bookAppoitment(time.hourAndMinutes)}> Book </button>}
+              <img src={this.state.barbershop.logo} alt="" height="150px;" />
+              <div>
+                <h1>{this.state.barbershop.name}</h1>
+                <p>
+                  <strong>Address:</strong>{" "}
+                  {this.state.barbershop.address.placename}
+                </p>
+                <ul>
+                  <li>
+                    <strong>Monday - Friday:</strong>{" "}
+                    {this.state.barbershop.workingHours.workingHourMonBegin}:00 -{" "}
+                    {this.state.barbershop.workingHours.workingHourMonEnd}:00
                   </li>
-                ))}
-              </ul>
+                  <li>
+                    <strong>Saturday:</strong>{" "}
+                    {this.state.barbershop.workingHours.workingHourSatBegin}:00 -{" "}
+                    {this.state.barbershop.workingHours.workingHourSatEnd}:00
+                  </li>
+                  <li>
+                    <strong>Sunday:</strong>{" "} Not Open
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h2>Book an appointment</h2>
+                <button className="day" onClick={()=>this.incrementDate(-1)}>{"<"}</button>
+                {this.state.date.toLocaleDateString()}
+                <button className="day" onClick={()=>this.incrementDate(1)}>{">"}</button>
+
+                <ul>
+                  {this.state.availableTimes.map(time => time.status === "Available" && (
+                    <li key={time.hourAndMinutes}>
+                      {this.convertToReadbleHour(time.hourAndMinutes)} -{" "}
+                      {/* {" "}  */}
+                      {time.status === "Available" && <button className="book" onClick={()=>this.bookAppoitment(time.hourAndMinutes)}> Book </button>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
         <MainFooter />
       </div>
     );

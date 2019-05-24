@@ -256,3 +256,20 @@ body {
   padding: 7px;
   color: white;
 }
+
+.appointment {
+  margin: 10px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: left;
+  color: white;
+  font-size: 20px
+}
+.appointment button {
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px
+}

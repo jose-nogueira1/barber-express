@@ -1,0 +1,25 @@
+.BarberShopProfile img {
+  margin-top: 5px;
+  border-radius: 50%
+}
+
+.BarberShopProfile ul li {
+  list-style-type: none;
+}
+
+.day {
+  margin: 10px;
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 10px;
+  padding: 7px;
+  color: white;
+}
+
+.book {
+  margin: 1px;
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 10px;
+  color: white;
+}

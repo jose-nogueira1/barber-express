@@ -4,6 +4,11 @@
   object-fit: contain;
 }
 
+.barbershopinfo a {
+  text-decoration: none;
+  color: red;
+}
+
 .map {
   width: 375px;
   height: 705px

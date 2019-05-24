@@ -34,9 +34,9 @@ export default class ManageAppointment extends Component {
         <MainNavBar canGoBack>My Appointments</MainNavBar>
         {this.state.appointments.map(appointment =>
           <div className="appointment" key={appointment._id}>
-            <strong>Barber Shop:</strong> {appointment._barberShop.name} <br/>
-            <strong>Date:</strong> {new Date(appointment.date).toLocaleString("fr-FR").substr(0,10)} <br/>
-            <strong>Time:</strong> {this.convertToReadbleHour(appointment.hourAndMinutes)} <br/>
+            <p><strong>Barber Shop:</strong> {appointment._barberShop.name}</p>
+            <p><strong>Date:</strong> {new Date(appointment.date).toLocaleString("fr-FR").substr(0,10)}</p>
+            <p><strong>Time:</strong> {this.convertToReadbleHour(appointment.hourAndMinutes)}</p>
             <button onClick={()=> this.deleteAppointment(appointment._id)}>Delete</button>
           </div>)}
         <MainFooter />
