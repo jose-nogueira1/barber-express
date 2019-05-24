@@ -212,35 +212,47 @@ body {
   color: white;
 }
 
-// .addbarbershop {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-// }
-
 .AddBarberShop {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.addbarbershop::after {
+.addbarbershop-center {
+  display: flex;
+  justify-content: center;
+}
+
+body {
   content: "";
-  background-image:  url("/img/bcg.jpg");
+  background-image:  url("/img/bcg.png");
   background-size: cover;
-  opacity: 0.15;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
+  // background-repeat: repeat;
+  // opacity: 0.15;
 }
 
 .addbarbershop input{
-  width: 250px;
-  margin: 10px;
+  max-width: 250px;
+  margin: 10px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
+.addbarbershop ::placeholder {
+  color: white;
+}
+
+.addbarbershop button {
+  margin: 10px;
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 10px;
+  padding: 7px;
+  color: white;
 }

@@ -1,0 +1,10 @@
+.barbershop img {
+  width: 50px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.map {
+  width: 375px;
+  height: 705px
+}

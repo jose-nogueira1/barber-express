@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MainNavbar from "../../MainNavbar"
 import MainFooter from '../../Mainfooter';
+import { Link } from "react-router-dom";
 import api from "../../api";
+import "./Home.css"
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY
@@ -40,16 +42,16 @@ export default class Home extends Component {
 
     for (let i = 0; i < barberShops.length; i++) {
       var popup = new mapboxgl.Popup()
-      .setHTML(
-        <div className="barbershop">
-          <img src="" alt="" />
-          <div className="barbershopinfo">
-            <p>Name: </p>
-            <p>Address: </p>
-            <p>Distance: </p>
+      .setHTML(`
+        <div class="barbershop">
+          <img src=${barberShops[i].logo} alt="" />
+          <div class="barbershopinfo">
+            <strong>Name: </strong>${barberShops[i].name} <br />
+            <strong>Address: </strong>${barberShops[i].address.placename} <br />
+            <a href="/barbershop/${barberShops[i]._id}">Check Barbershop</a>
           </div>
-        </div>          
-      )
+        </div>
+      `)
       this.marker = new mapboxgl.Marker({ color: 'red' })
         .setLngLat(barberShops[i].address.location.coordinates)
         .setPopup(popup)
@@ -63,7 +65,7 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <MainNavbar>Barber Express</MainNavbar>
-        <div className="map" ref={this.mapRef} style={{ height: 400}}></div>
+        <div className="map" ref={this.mapRef}></div>
         <MainFooter />
       </div>
     );
