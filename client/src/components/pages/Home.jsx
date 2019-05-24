@@ -63,7 +63,6 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <MainNavbar>Barber Express</MainNavbar>
-        <h2>Yo</h2>
         <div className="map" ref={this.mapRef} style={{ height: 400}}></div>
         <MainFooter />
       </div>
